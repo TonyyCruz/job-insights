@@ -1,4 +1,5 @@
 from typing import List, Dict
+from .jobs import read
 
 
 def get_unique_industries(path: str) -> List[str]:
@@ -16,7 +17,13 @@ def get_unique_industries(path: str) -> List[str]:
     list
         List of unique industries
     """
-    raise NotImplementedError
+    industries_name = read(path)
+    industries = {
+        industry["industry"]
+        for industry in industries_name
+        if industry["industry"]
+    }
+    return industries
 
 
 def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
@@ -34,4 +41,9 @@ def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
     list
         List of jobs with provided industry
     """
-    raise NotImplementedError
+    filtered_industries = [
+      job
+      for job in jobs
+      if job["industry"] == industry
+    ]
+    raise filtered_industries
