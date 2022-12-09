@@ -10,8 +10,8 @@ def read(path: str) -> List[Dict]:
             content = csv.DictReader(file, delimiter=",", quotechar='"')
             response = [data for data in content]
             return response
-    except KeyError:
-        print("Error, file reading failed")
+    except OSError:
+        print(f'Could not open/read file: {path}')
 
 
 def get_unique_job_types(path: str) -> List[str]:
