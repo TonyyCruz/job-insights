@@ -10,7 +10,7 @@ def read(path: str) -> List[Dict]:
             content = csv.DictReader(file, delimiter=",", quotechar='"')
             response = [data for data in content]
             return response
-    except OSError:
+    except (OSError, AttributeError):
         print(f'Could not open/read file: {path}')
 
 
